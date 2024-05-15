@@ -81,3 +81,4 @@ def ptittest():
     print(f"données ecrites dans le fichier json")
 
 ptittest()
+#petit test pour commit
