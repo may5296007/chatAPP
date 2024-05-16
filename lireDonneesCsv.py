@@ -16,3 +16,4 @@ def lireDonneesCsv():
                 liste_donnee_geo.append(donneeGeo)
 
     return liste_donnee_geo
+print("hello")
