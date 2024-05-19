@@ -63,7 +63,7 @@ def ecrireDonneesJson(nomFichier, listeObjetDonneesGeo):
 
 
 # fonction juste pour tester
-def ptittest():
+"""def ptittest():
     fichier_csv = "Donnees.csv"
 
     #lecture
@@ -79,7 +79,7 @@ def ptittest():
     #lecriture de nos données en json
     ecrireDonneesJson(fichier_json, donnees)
     print(f"données ecrites dans le fichier json")
-
+"""
 from math import *
 import json
 import math
@@ -140,3 +140,71 @@ def trouverDistanceMin(nomFichier):
 # Exemple d'utilisation
 trouverDistanceMin('donnees.json')
 
+def menu():
+
+    choix = ''
+    donnees = [] #liste pour stocker les données geographiques
+    donneesChargees = False #pour suivre letat des operations
+    donneesSauvgardees = False
+
+    while choix != 'q':  #boucle jusqua ce que lutilisateur mette q
+        print(f'\n---------------------------------------- MENU ----------------------------------')
+        print(f" 1-	Lire les données du fichier csv, créer les objets et afficher les données")
+        print(f" 2- Sauvegarder les données dans un fichier .json ")
+        print(f" 3- Lire les données du fichier .json, déterminer et afficher les données associées à la distance minimale entre deux villes et sauvegarder les calculs dans distances.csv ")
+        print(" veuillez Entrez un numéro pour choisir ou 'q' pour quitter : ")
+
+        choix = input().strip() #pour lirele choix de lutilisateur
+
+        if choix =='1':
+
+            #lire les donnees du fichier csv
+            donnees = lireDonneesCsv('Donnees.csv')
+            print(f" Les données ont été lu a partir du fichier Donnees.csv :")
+
+            #afficher les données du fichier
+            for donnee in donnees:
+
+                print(donnee)
+
+            #lutilisateur dois appuyez sur une touche pour continuez (petit bonus pour les points)
+            input("Appuyez sur une touche pour continuez...")
+
+            #je met a jour letat des donnees de false a true
+            donneesChargees = True
+
+        elif choix == '2':
+
+            #verifier si les donnes ont été chargées
+            if not donneesChargees :
+                print(f" vuillez dabord lire les données a partir du fichier csv (loption num 1)")
+
+            else:
+                #sauvgarde les données dans le fichier json
+                ecrireDonneesJson('donnees.json', donnees)
+                print("Données sauvegardées dans le fichier donnees.json ")
+
+                #mise a jour des données chargées allons de letat false a true
+                donneesSauvgardees = True
+
+        elif choix == '3':
+            if not donneesChargees:
+                print("Veuillez d'abord lire les données à partir du fichier CSV (l'option num 1) ")
+
+            elif not donneesSauvgardees:
+                print("Veuillez d'abord sauvegarder les données dans un fichier JSON (l'option num 2)")
+
+            else:
+                #japelle ta fonction de calcul
+                trouverDistanceMin('donnees.json')
+
+        elif choix == 'q':
+            #je quitte le programme
+            print("Quitter le programme...")
+
+        else:
+            #pour les entrées invalide
+            print("Option invalide. Veuillez réessayer.")
+
+if __name__ == "__main__":
+    menu()
