@@ -100,19 +100,21 @@ def calculer_distance(lat1, lon1, lat2, lon2):
     dlon = l2 - l1
 
     # Formule de Haversine pour calculer la distance
+    # La partie sous la racine
     a = math.sin(dlat / 2) ** 2 + math.cos(t1) * math.cos(t2) * math.sin(dlon / 2) ** 2
+    # La partie hors racine(c'était trop moche les 2 ensembles et on comprend mieux comme ça)
     c = 2 * math.asin(math.sqrt(a))
 
     # Calcul de la distance finale
     return R * c
 
-# Fonction pour trouver la distance minimale et sauvegarder toutes les distances dans un fichier CSV
+# Fonction pour trouver la distance minimale et sauvegarder toutes les distances dans un fichier CSV(distance.csv)
 def trouverDistanceMin(nomFichierJSON, nomFichierCSV):
-    # Chargement des données des villes à partir d'un fichier JSON
+    # Chargement des données des villes à partir d'un fichier json
     with open(nomFichierJSON, 'r', encoding='utf-8') as fichier:
         villes = json.load(fichier)
 
-    # Initialisation de la distance minimale et des villes correspondantes
+    # Initialisation de la distance minimale et des villes à un chiffre grand, très grand
     distance_min = float('inf')
     ville1_min = None
     ville2_min = None
@@ -123,9 +125,9 @@ def trouverDistanceMin(nomFichierJSON, nomFichierCSV):
         f_distance = csv.DictWriter(f_csv, fieldnames=fieldnames)
         f_distance.writeheader()
 
-        # Boucles imbriquées pour comparer chaque paire de villes
-        for i in range(len(villes)):
-            for j in range(i + 1, len(villes)):
+        # Boucles pour comparés chacune des villes ensembles
+        for i in range(len(villes)):#pour chaque élément du fichier
+            for j in range(i + 1, len(villes)):#compare au deuxième sur la liste, puis le troisième et le quatrième ect..
                 ville1 = villes[i]
                 ville2 = villes[j]
                 lat1, lon1 = ville1['Latitude'], ville1['Longitude']
@@ -141,7 +143,7 @@ def trouverDistanceMin(nomFichierJSON, nomFichierCSV):
                     'distance': f"{distance:.2f}"
                 })
 
-                # Mise à jour de la distance minimale si nécessaire
+                # Mise à jour de la distance minimale si on en a besoin
                 if distance < distance_min:
                     distance_min = distance
                     ville1_min = ville1
