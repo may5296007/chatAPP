@@ -29,7 +29,7 @@ def lireDonneesCsv(nomFichier):
                 # je supprime les espaces
                 longitude = float(longitude.replace(" ", ""))
                 donnees_geographiques.append(DonneesGeo(ville, pays, latitude, longitude))
-        return (donnees_geographiques)
+    return donnees_geographiques
 
 
 
