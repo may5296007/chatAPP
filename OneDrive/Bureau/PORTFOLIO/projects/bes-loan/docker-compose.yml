@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  auth-service:
+    build: ./services/auth-service
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./services/auth-service:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - JWT_SECRET=your_jwt_secret_key
+
+  loan-service:
+    build: ./services/loan-service
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./services/loan-service:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - auth-service
+
+  payment-service:
+    build: ./services/payment-service
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./services/payment-service:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - auth-service
+      - loan-service
+
+  gateway-api:
+    build: ./services/gateway-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./services/gateway-api:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - auth-service
+      - loan-service
+      - payment-service
