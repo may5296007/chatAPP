@@ -13,22 +13,10 @@ const Layout = () => (
       </div>
     </nav>
 
-    <main className="flex-grow-1 container-fluid py-4">
-      <div className="row g-4">
-        <aside className="col-12 col-md-4 col-lg-3">
-          <div className="sidebar p-3">
-            <div className="mb-3">
-              <input className="form-control" placeholder="Rechercher un contact..." />
-            </div>
-            <div className="contacts-list">
-              {/* Liste de contacts dynamique — remplacez par votre composant qui mappe les contacts depuis le context ou la source de données */}
-            </div>
-          </div>
-        </aside>
-
-        <section className="col-12 col-md-8 col-lg-9">
+    <main className="flex-grow-1 container py-4">
+      <div className="row justify-content-center">
+        <section className="col-12 col-md-10 col-lg-8">
           <div className="chat-container p-3">
-            {/* AppRoutes rendra vos pages / composants de chat ici */}
             <AppRoutes />
           </div>
         </section>
