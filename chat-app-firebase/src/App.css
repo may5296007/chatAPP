@@ -1,123 +1,54 @@
-/* Reset et styles de base */
+:root {
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --color-scrollbar: #cbd5e1;
+  --color-scrollbar-hover: #94a3b8;
+  --color-scrollbar-track: #f1f1f1;
+  --color-focus: #3b82f6;
+  --color-tooltip-bg: rgba(0, 0, 0, 0.8);
+  --color-notification: #ef4444;
+}
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Base */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar personnalisée */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-scrollbar);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: var(--color-scrollbar-hover);
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.slide-in-right {
-  animation: slideInRight 0.3s ease-in-out;
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.3s ease-in-out;
-}
-
-.slide-in-up {
-  animation: slideInUp 0.3s ease-in-out;
-}
-
-/* Utilitaires */
-.text-balance {
-  text-wrap: balance;
-}
-
-.line-clamp-1 {
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Focus visible pour l'accessibilité */
+/* Focus visible */
 *:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 
-/* Transitions globales */
+/* Transitions */
 button,
 a,
 input,
@@ -126,25 +57,66 @@ select {
   transition: all 0.2s ease-in-out;
 }
 
-/* Styles pour les messages */
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.fade-in { animation: fadeIn 0.3s ease-in-out; }
+.slide-in-right { animation: slideInRight 0.3s ease-in-out; }
+.slide-in-left { animation: slideInLeft 0.3s ease-in-out; }
+.slide-in-up { animation: slideInUp 0.3s ease-in-out; }
+
+/* Utilities */
+.text-balance { text-wrap: balance; }
+
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 { -webkit-line-clamp: 1; }
+.line-clamp-2 { -webkit-line-clamp: 2; }
+.line-clamp-3 { -webkit-line-clamp: 3; }
+
+/* Message bubbles */
 .message-bubble {
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
-/* Styles pour les liens dans les messages */
 .message-bubble a {
   text-decoration: underline;
   color: inherit;
   opacity: 0.8;
+  transition: opacity 0.2s;
 }
 
 .message-bubble a:hover {
   opacity: 1;
 }
 
-/* Animation du typing indicator (optionnel) */
+/* Typing indicator */
 .typing-indicator {
   display: flex;
   gap: 4px;
@@ -158,13 +130,8 @@ select {
   animation: typing 1.4s infinite;
 }
 
-.typing-indicator span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-  animation-delay: 0.4s;
-}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
 
 @keyframes typing {
   0%, 60%, 100% {
@@ -177,7 +144,7 @@ select {
   }
 }
 
-/* Styles pour les badges de notification */
+/* Notification badge */
 .notification-badge {
   display: inline-flex;
   align-items: center;
@@ -189,11 +156,11 @@ select {
   font-weight: 600;
   line-height: 1;
   color: white;
-  background-color: #ef4444;
+  background-color: var(--color-notification);
   border-radius: 9px;
 }
 
-/* Styles pour les tooltips (optionnel) */
+/* Tooltip */
 .tooltip {
   position: relative;
 }
@@ -205,7 +172,7 @@ select {
   left: 50%;
   transform: translateX(-50%) translateY(-8px);
   padding: 4px 8px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: var(--color-tooltip-bg);
   color: white;
   font-size: 12px;
   border-radius: 4px;
@@ -226,21 +193,10 @@ select {
   }
 }
 
-/* Print styles */
+/* Print */
 @media print {
-  body {
-    background: white;
-  }
-  
-  header,
-  nav,
-  aside,
-  button {
+  body { background: white; }
+  header, nav, aside, button {
     display: none !important;
   }
-}
-
-/* Dark mode (optionnel - si vous voulez l'ajouter plus tard) */
-@media (prefers-color-scheme: dark) {
-  /* Styles dark mode ici */
 }
