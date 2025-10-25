@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /* Tailwind directives */
 @tailwind base;
 @tailwind components;
@@ -213,3 +214,8 @@
 .animate-scaleIn {
   animation: scaleIn 0.3s ease-in-out;
 }
+=======
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+>>>>>>> Stashed changes

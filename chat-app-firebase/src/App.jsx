@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ChatProvider } from './contexts/ChatContext';
 import AppRoutes from './routes/AppRoutes';
+<<<<<<< Updated upstream
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
@@ -40,6 +41,9 @@ const router = createBrowserRouter([
     v7_relativeSplatPath: true
   }
 });
+=======
+
+>>>>>>> Stashed changes
 
 function App() {
   return (
